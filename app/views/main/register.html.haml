@@ -1,0 +1,17 @@
+%h1 Register
+
+-# frozen_string_literal: true
+= simple_form_for @user, :url => '/register' do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :username
+    = f.input :password
+    = f.input :password_confirmation
+    = f.input :firstname
+    = f.input :lastname
+
+  .form-actions
+    = f.button :submit,'Register',class: 'btn btn-success mt-3', commit: 'Create_user'
+    = link_to 'Cancel', '/main',class: 'btn btn-secondary mt-3'
