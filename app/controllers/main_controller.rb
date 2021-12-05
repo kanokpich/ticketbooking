@@ -1,5 +1,5 @@
 class MainController < ApplicationController
-    before_action :login_check, only: %i[ feed ]
+    before_action :login_check, only: %i[ home ]
 
     def main 
         session.delete(:user_id)
@@ -8,7 +8,7 @@ class MainController < ApplicationController
         end
     end
 
-    def feed 
+    def home 
 
     end 
 
@@ -32,7 +32,7 @@ class MainController < ApplicationController
         respond_to do |format|
             if @user && @user.authenticate(@password)
                 session[:user_id] = @user.id
-                format.html { redirect_to '/feed', notice: "Login successfully" }
+                format.html { redirect_to '/home', notice: "Login successfully" }
                 format.json { render json: @user }
             else
                 session.delete(:user_id)

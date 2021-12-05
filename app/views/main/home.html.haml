@@ -1,11 +1,11 @@
-%h1 feed
+%h1 Home
 
 -# frozen_string_literal: true
 
-= simple_form_for @user, :url => '/feed' do |f|
+= simple_form_for @user, :url => '/home' do |f|
     = f.error_notification
     = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
     .form-action
-        = link_to 'Logout', "/logout",class: 'btn btn-primary mt-3'  
+        = link_to 'Logout', "/logout",class: 'btn btn-danger mt-3'  
         
