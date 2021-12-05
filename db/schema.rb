@@ -10,7 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_04_041803) do
+ActiveRecord::Schema.define(version: 2021_12_05_051536) do
+
+  create_table "chairs", force: :cascade do |t|
+    t.string "row"
+    t.string "colomn"
+    t.integer "price"
+    t.string "type"
+    t.integer "theater_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["theater_id"], name: "index_chairs_on_theater_id"
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.string "name"
+    t.string "type"
+    t.datetime "date_in"
+    t.datetime "date_out"
+    t.integer "duration"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "theaters", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.integer "timetable_id", null: false
+    t.integer "chair_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chair_id"], name: "index_tickets_on_chair_id"
+    t.index ["timetable_id"], name: "index_tickets_on_timetable_id"
+  end
+
+  create_table "timetables", force: :cascade do |t|
+    t.datetime "time_start"
+    t.datetime "time_stop"
+    t.integer "movie_id", null: false
+    t.integer "theater_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_timetables_on_movie_id"
+    t.index ["theater_id"], name: "index_timetables_on_theater_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -21,4 +68,9 @@ ActiveRecord::Schema.define(version: 2021_12_04_041803) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "chairs", "theaters"
+  add_foreign_key "tickets", "chairs"
+  add_foreign_key "tickets", "timetables"
+  add_foreign_key "timetables", "movies"
+  add_foreign_key "timetables", "theaters"
 end

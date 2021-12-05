@@ -1,4 +1,5 @@
 class MainController < ApplicationController
+    before_action :login_check, only: %i[ feed ]
 
     def main 
         session.delete(:user_id)
@@ -7,7 +8,22 @@ class MainController < ApplicationController
         end
     end
 
+    def feed 
+
+    end 
+
     def login 
+        session.delete(:user_id)
+        if(!@user) 
+            @user=User.new
+        end
+    end
+
+    def logout 
+        redirect_to '/main', alert: "Logout successfully"
+    end
+
+    def loged_in 
         @username = params[:user][:username]
         @password = params[:user][:password]
 
@@ -16,7 +32,7 @@ class MainController < ApplicationController
         respond_to do |format|
             if @user && @user.authenticate(@password)
                 session[:user_id] = @user.id
-                format.html { redirect_to '/main', notice: "Login successfully" }
+                format.html { redirect_to '/feed', notice: "Login successfully" }
                 format.json { render json: @user }
             else
                 session.delete(:user_id)
@@ -47,5 +63,13 @@ class MainController < ApplicationController
     private
         def user_params
             params.require(:user).permit(:username, :password_digest, :password, :password_confirmation, :firstname, :lastname)
+        end
+
+        def login_check 
+            if(session[:user_id])
+              @user=User.find(session[:user_id])
+            else
+              redirect_to main_path, alert: "Please Login."
+            end
         end
 end

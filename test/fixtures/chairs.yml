@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  row: MyString
+  colomn: MyString
+  price: 
+  type: 
+  theater: one
+
+two:
+  row: MyString
+  colomn: MyString
+  price: 
+  type: 
+  theater: two

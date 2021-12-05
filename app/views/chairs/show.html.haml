@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Row:
+  = @chair.row
+%p
+  %b Colomn:
+  = @chair.colomn
+%p
+  %b Price:
+  = @chair.price
+%p
+  %b Type:
+  = @chair.type
+%p
+  %b Theater:
+  = @chair.theater
+
+= link_to 'Edit', edit_chair_path(@chair)
+\|
+= link_to 'Back', chairs_path

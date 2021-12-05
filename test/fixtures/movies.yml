@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 
+  date_in: 2021-12-05 12:00:56
+  date_out: 2021-12-05 12:00:56
+  duration: 1
+
+two:
+  name: MyString
+  type: 
+  date_in: 2021-12-05 12:00:56
+  date_out: 2021-12-05 12:00:56
+  duration: 1
