@@ -4,7 +4,7 @@ class CreateChairs < ActiveRecord::Migration[6.1]
       t.string :row
       t.string :colomn
       t.integer :price
-      t.string :type
+      t.string :chairtype
       t.references :theater, null: false, foreign_key: true
 
       t.timestamps

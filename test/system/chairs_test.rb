@@ -14,11 +14,11 @@ class ChairsTest < ApplicationSystemTestCase
     visit chairs_url
     click_on "New Chair"
 
+    fill_in "Chairtype", with: @chair.chairtype
     fill_in "Colomn", with: @chair.colomn
     fill_in "Price", with: @chair.price
     fill_in "Row", with: @chair.row
     fill_in "Theater", with: @chair.theater_id
-    fill_in "Type", with: @chair.type
     click_on "Create Chair"
 
     assert_text "Chair was successfully created"
@@ -29,11 +29,11 @@ class ChairsTest < ApplicationSystemTestCase
     visit chairs_url
     click_on "Edit", match: :first
 
+    fill_in "Chairtype", with: @chair.chairtype
     fill_in "Colomn", with: @chair.colomn
     fill_in "Price", with: @chair.price
     fill_in "Row", with: @chair.row
     fill_in "Theater", with: @chair.theater_id
-    fill_in "Type", with: @chair.type
     click_on "Update Chair"
 
     assert_text "Chair was successfully updated"

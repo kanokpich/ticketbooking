@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   resources :tickets
+  resources :movies
   resources :chairs
   resources :timetables
   resources :theaters
-  resources :movies
   resources :users
 
   get 'main' ,to: "main#main"

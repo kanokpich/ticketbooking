@@ -2,14 +2,14 @@
 
 one:
   name: MyString
-  type: 
-  date_in: 2021-12-05 12:00:56
-  date_out: 2021-12-05 12:00:56
+  movietype: MyString
+  date_in: 2021-12-06 13:38:29
+  date_out: 2021-12-06 13:38:29
   duration: 1
 
 two:
   name: MyString
-  type: 
-  date_in: 2021-12-05 12:00:56
-  date_out: 2021-12-05 12:00:56
+  movietype: MyString
+  date_in: 2021-12-06 13:38:29
+  date_out: 2021-12-06 13:38:29
   duration: 1

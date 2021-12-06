@@ -17,8 +17,8 @@ class MoviesTest < ApplicationSystemTestCase
     fill_in "Date in", with: @movie.date_in
     fill_in "Date out", with: @movie.date_out
     fill_in "Duration", with: @movie.duration
+    fill_in "Movietype", with: @movie.movietype
     fill_in "Name", with: @movie.name
-    fill_in "Type", with: @movie.type
     click_on "Create Movie"
 
     assert_text "Movie was successfully created"
@@ -32,8 +32,8 @@ class MoviesTest < ApplicationSystemTestCase
     fill_in "Date in", with: @movie.date_in
     fill_in "Date out", with: @movie.date_out
     fill_in "Duration", with: @movie.duration
+    fill_in "Movietype", with: @movie.movietype
     fill_in "Name", with: @movie.name
-    fill_in "Type", with: @movie.type
     click_on "Update Movie"
 
     assert_text "Movie was successfully updated"

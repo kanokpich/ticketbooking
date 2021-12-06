@@ -3,13 +3,13 @@
 one:
   row: MyString
   colomn: MyString
-  price: 
-  type: 
+  price: 1
+  chairtype: MyString
   theater: one
 
 two:
   row: MyString
   colomn: MyString
-  price: 
-  type: 
+  price: 1
+  chairtype: MyString
   theater: two

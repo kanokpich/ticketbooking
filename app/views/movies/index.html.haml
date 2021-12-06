@@ -4,7 +4,7 @@
   %thead
     %tr
       %th Name
-      %th Type
+      %th Movietype
       %th Date in
       %th Date out
       %th Duration
@@ -16,7 +16,7 @@
     - @movies.each do |movie|
       %tr
         %td= movie.name
-        %td= movie.type
+        %td= movie.movietype
         %td= movie.date_in
         %td= movie.date_out
         %td= movie.duration
