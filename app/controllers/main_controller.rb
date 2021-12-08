@@ -45,6 +45,7 @@ class MainController < ApplicationController
 
     def register
         @user = User.new
+        @inventory = Inventory.new
     end
 
     def register_create
@@ -52,6 +53,7 @@ class MainController < ApplicationController
 
         respond_to do |format|
             if @user.save
+                create_inventory
                 format.html { redirect_to '/main', notice: "Register successfully." }
                 format.json { render :show, status: :created, location: @user }
             else
@@ -59,6 +61,11 @@ class MainController < ApplicationController
                 format.json { render json: @user.errors, status: :unprocessable_entity }
             end
         end
+    end
+
+    def create_inventory
+        @inventory = Inventory.new(:user_id => @user.id)
+        @inventory.save
     end
 
     private
