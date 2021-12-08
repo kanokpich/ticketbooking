@@ -1,6 +1,6 @@
 %h1 Listing timetables
 
-%table
+%table{:class=>'display',:id=>'timetables-index-table',:style=>'width:100%'}
   %thead
     %tr
       %th Time start
@@ -16,8 +16,8 @@
       %tr
         %td= timetable.time_start
         %td= timetable.time_stop
-        %td= timetable.movie
-        %td= timetable.theater
+        %td= timetable.movie.name
+        %td= timetable.theater.name
         %td= link_to 'Show', timetable
         %td= link_to 'Edit', edit_timetable_path(timetable)
         %td= link_to 'Destroy', timetable, method: :delete, data: { confirm: 'Are you sure?' }
@@ -25,3 +25,16 @@
 %br
 
 = link_to 'New Timetable', new_timetable_path
+
+:javascript 
+  $(document).ready(function() {
+    $('#timetables-index-table').DataTable( {
+        columnDefs: [ {
+            targets: [ 0 ],
+            orderData: [ 0, 1 ]
+        }, {
+            targets: [ 1 ],
+            orderData: [ 1, 0 ]
+        } ]
+    } );
+  } );

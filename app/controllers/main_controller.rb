@@ -2,6 +2,7 @@ class MainController < ApplicationController
     before_action :login_check, only: %i[ home ]
 
     def main 
+        @timetables = Timetable.all
         session.delete(:user_id)
         if(!@user) 
             @user=User.new
@@ -9,7 +10,7 @@ class MainController < ApplicationController
     end
 
     def home 
-
+        @timetables = Timetable.all
     end 
 
     def login 
