@@ -1,0 +1,23 @@
+%h1 Listing inventories
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Ticket
+      %th
+      %th
+      %th
+
+  %tbody
+    - @inventories.each do |inventory|
+      %tr
+        %td= inventory.user
+        %td= inventory.ticket
+        %td= link_to 'Show', inventory
+        %td= link_to 'Edit', edit_inventory_path(inventory)
+        %td= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Inventory', new_inventory_path

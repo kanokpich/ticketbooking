@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_06_064121) do
+ActiveRecord::Schema.define(version: 2021_12_08_150102) do
 
   create_table "chairs", force: :cascade do |t|
     t.string "row"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 2021_12_06_064121) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["theater_id"], name: "index_chairs_on_theater_id"
+  end
+
+  create_table "inventories", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "ticket_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ticket_id"], name: "index_inventories_on_ticket_id"
+    t.index ["user_id"], name: "index_inventories_on_user_id"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -69,6 +78,8 @@ ActiveRecord::Schema.define(version: 2021_12_06_064121) do
   end
 
   add_foreign_key "chairs", "theaters"
+  add_foreign_key "inventories", "tickets"
+  add_foreign_key "inventories", "users"
   add_foreign_key "tickets", "chairs"
   add_foreign_key "tickets", "timetables"
   add_foreign_key "timetables", "movies"

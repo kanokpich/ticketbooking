@@ -10,6 +10,8 @@
             %ul.navbar-nav.me-auto.mb-2.mb-lg-0
                 -if(session[:user_id])
                     %li.nav-item
+                        %a.nav-link.active{"aria-current" => "Inventory", :href => "/Inventories"} Inventory 
+                    %li.nav-item
                         %a.nav-link.active{"aria-current" => "logout", :href => "/logout"} Logout 
                 -else
                     %li.nav-item
