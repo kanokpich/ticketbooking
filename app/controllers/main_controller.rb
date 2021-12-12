@@ -1,5 +1,5 @@
 class MainController < ApplicationController
-    before_action :login_check, only: %i[ home ]
+    before_action :login_check, only: %i[ home inventory ]
 
     def main 
         @timetables = Timetable.all
@@ -90,6 +90,7 @@ class MainController < ApplicationController
         @user = User.find_by(:id => session[:user_id])
         @inventory = Inventory.find_by(:user_id => @user.id)
         @inventory_ticket = @inventory.get_inventory_item
+        @inventory_price = @inventory.get_price
     end 
 
     private
@@ -101,7 +102,7 @@ class MainController < ApplicationController
             if(session[:user_id])
               @user=User.find(session[:user_id])
             else
-              redirect_to main_path, alert: "Please Login."
+              redirect_to main_path, alert: "Please Login first."
             end
         end
 end

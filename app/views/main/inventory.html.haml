@@ -8,6 +8,7 @@
       %th Chair
       %th Start Time
       %th Stop Time
+      %th price
 
   %tbody
     - @inventory_ticket.each.with_index() do |ticket,index|
@@ -17,8 +18,12 @@
         %td= ticket.chair.name
         %td= ticket.timetable.time_start
         %td= ticket.timetable.time_stop
+        %td= ticket.chair.price
 
 %br
+
+%div
+= 'Total amount ' + @inventory_price.to_s + ' bahts.'
 
 :javascript 
   $(document).ready(function() {
