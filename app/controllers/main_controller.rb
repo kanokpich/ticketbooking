@@ -11,6 +11,7 @@ class MainController < ApplicationController
 
     def home 
         @timetables = Timetable.all
+        @ticket = Ticket.new
     end 
 
     def login 
@@ -33,7 +34,7 @@ class MainController < ApplicationController
         respond_to do |format|
             if @user && @user.authenticate(@password)
                 session[:user_id] = @user.id
-                format.html { redirect_to '/home', notice: "Login successfully" }
+                format.html { redirect_to '/home?user_id='+@user.id.to_s, notice: "Login successfully" }
                 format.json { render json: @user }
             else
                 session.delete(:user_id)
@@ -66,6 +67,23 @@ class MainController < ApplicationController
     def create_inventory
         @inventory = Inventory.new(:user_id => @user.id)
         @inventory.save
+    end
+
+    def ticket
+        @user = User.find_by(:id => session[:user_id])
+        @inventory = Inventory.find_by(:user_id => @user.id)
+        @timetable = Timetable.find(params[:timetable_id])
+        @chair = Chair.find_by(:id => params[:ticket][:chair_id])
+        if(params[:commit]=='Add to inventory')
+            @ticket = Ticket.new
+            @ticket.timetable_id = @timetable.id
+            @ticket.chair_id = @chair.id
+            @ticket.inventory_id = @inventory.id 
+            
+            if @ticket.save
+                redirect_to '/home/?user_id='+@user.id.to_s, notice: "Add to inventory successfully."
+            end
+        end
     end
 
     private

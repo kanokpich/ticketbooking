@@ -64,6 +64,6 @@ class ChairsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def chair_params
-      params.require(:chair).permit(:row, :colomn, :price, :chairtype, :theater_id)
+      params.require(:chair).permit(:name, :price, :chairtype, :theater_id)
     end
 end

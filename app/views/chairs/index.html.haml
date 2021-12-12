@@ -3,8 +3,7 @@
 %table
   %thead
     %tr
-      %th Row
-      %th Colomn
+      %th Name
       %th Price
       %th Chairtype
       %th Theater
@@ -15,8 +14,7 @@
   %tbody
     - @chairs.each do |chair|
       %tr
-        %td= chair.row
-        %td= chair.colomn
+        %td= chair.name
         %td= chair.price
         %td= chair.chairtype
         %td= chair.theater

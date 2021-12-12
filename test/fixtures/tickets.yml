@@ -3,7 +3,9 @@
 one:
   timetable: one
   chair: one
+  inventory: one
 
 two:
   timetable: two
   chair: two
+  inventory: two

@@ -8,7 +8,7 @@
       %th Theater
       %th Start Time
       %th Stop Time
-      %th
+      %th Select Seat
       %th
 
   %tbody
@@ -19,6 +19,17 @@
         %td= timetable.theater.name
         %td= timetable.time_start
         %td= timetable.time_stop
+        %td
+          = simple_form_for(@ticket, method: :post, url: '/ticket/'+timetable.id.to_s) do |f|
+            .form-inputs
+              = f.association :chair
+            .form-actions
+              = f.button :submit,'Add to inventory',class:'btn btn-success mt-3',action:'Add'
+        %td 
+          = simple_form_for(@user) do |f|
+            .form-inputs
+              = f.input :id,:as => :hidden
+
 
 %br
 

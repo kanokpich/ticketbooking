@@ -17,7 +17,7 @@ class ChairsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create chair" do
     assert_difference('Chair.count') do
-      post chairs_url, params: { chair: { chairtype: @chair.chairtype, colomn: @chair.colomn, price: @chair.price, row: @chair.row, theater_id: @chair.theater_id } }
+      post chairs_url, params: { chair: { chairtype: @chair.chairtype, name: @chair.name, price: @chair.price, theater_id: @chair.theater_id } }
     end
 
     assert_redirected_to chair_url(Chair.last)
@@ -34,7 +34,7 @@ class ChairsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update chair" do
-    patch chair_url(@chair), params: { chair: { chairtype: @chair.chairtype, colomn: @chair.colomn, price: @chair.price, row: @chair.row, theater_id: @chair.theater_id } }
+    patch chair_url(@chair), params: { chair: { chairtype: @chair.chairtype, name: @chair.name, price: @chair.price, theater_id: @chair.theater_id } }
     assert_redirected_to chair_url(@chair)
   end
 

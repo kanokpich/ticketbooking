@@ -15,9 +15,8 @@ class ChairsTest < ApplicationSystemTestCase
     click_on "New Chair"
 
     fill_in "Chairtype", with: @chair.chairtype
-    fill_in "Colomn", with: @chair.colomn
+    fill_in "Name", with: @chair.name
     fill_in "Price", with: @chair.price
-    fill_in "Row", with: @chair.row
     fill_in "Theater", with: @chair.theater_id
     click_on "Create Chair"
 
@@ -30,9 +29,8 @@ class ChairsTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Chairtype", with: @chair.chairtype
-    fill_in "Colomn", with: @chair.colomn
+    fill_in "Name", with: @chair.name
     fill_in "Price", with: @chair.price
-    fill_in "Row", with: @chair.row
     fill_in "Theater", with: @chair.theater_id
     click_on "Update Chair"
 
