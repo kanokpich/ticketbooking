@@ -9,3 +9,8 @@ two:
   timetable: two
   chair: two
   inventory: two
+
+ticket1:
+  timetable: timetable1
+  chair: chair1
+  inventory: inventory1

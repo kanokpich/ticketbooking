@@ -13,3 +13,10 @@ two:
   date_in: 2021-12-06 13:38:29
   date_out: 2021-12-06 13:38:29
   duration: 1
+
+movie1:
+  name: movietest
+  movietype: test
+  date_in: 2021-12-06 13:38:29
+  date_out: 2021-12-06 13:38:29
+  duration: 1

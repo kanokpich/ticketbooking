@@ -23,3 +23,9 @@ user2:
   password_digest: <%= BCrypt::Password.create('test') %>
   firstname: test2
   lastname: test2
+
+user3: 
+  username: test3
+  password_digest: <%= BCrypt::Password.create('testtest') %>
+  firstname: test3
+  lastname: test3

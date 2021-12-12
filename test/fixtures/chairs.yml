@@ -11,3 +11,9 @@ two:
   price: 1
   chairtype: MyString
   theater: two
+
+chair1:
+  name: test1
+  price: 100
+  chairtype: test
+  theater: theater1

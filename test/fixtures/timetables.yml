@@ -11,3 +11,9 @@ two:
   time_stop: 2021-12-05 12:06:38
   movie: two
   theater: two
+
+timetable1:
+  time_start: 2021-12-06 13:38:29
+  time_stop: 2021-12-06 13:38:29
+  movie: movie1
+  theater: theater1
