@@ -86,6 +86,12 @@ class MainController < ApplicationController
         end
     end
 
+    def inventory
+        @user = User.find_by(:id => session[:user_id])
+        @inventory = Inventory.find_by(:user_id => @user.id)
+        @inventory_ticket = @inventory.get_inventory_item
+    end 
+
     private
         def user_params
             params.require(:user).permit(:username, :password_digest, :password, :password_confirmation, :firstname, :lastname)

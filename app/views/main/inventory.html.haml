@@ -1,0 +1,34 @@
+%h1 Inventory
+
+%table{:class=>'display',:id=>'tickets-index-table',:style=>'width:100%'}
+  %thead
+    %tr
+      %th Movie
+      %th Theater
+      %th Chair
+      %th Start Time
+      %th Stop Time
+
+  %tbody
+    - @inventory_ticket.each.with_index() do |ticket,index|
+      %tr
+        %td= ticket.timetable.movie.name
+        %td= ticket.timetable.theater.name
+        %td= ticket.chair.name
+        %td= ticket.timetable.time_start
+        %td= ticket.timetable.time_stop
+
+%br
+
+:javascript 
+  $(document).ready(function() {
+    $('#tickets-index-table').DataTable( {
+        columnDefs: [ {
+            targets: [ 0 ],
+            orderData: [ 0, 1 ]
+        }, {
+            targets: [ 1 ],
+            orderData: [ 1, 0 ]
+        } ]
+    } );
+  } );
