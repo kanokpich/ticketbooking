@@ -1,5 +1,5 @@
 class MainController < ApplicationController
-    before_action :login_check, only: %i[ home inventory ]
+    before_action :login_check, only: %i[ home inventory check_out ]
 
     def main 
         @timetables = Timetable.all
@@ -12,6 +12,8 @@ class MainController < ApplicationController
     def home 
         @timetables = Timetable.all
         @ticket = Ticket.new
+        @user = User.find_by(:id => session[:user_id])
+        @inventory = Inventory.find_by(:user_id => @user.id)
     end 
 
     def login 
@@ -83,15 +85,25 @@ class MainController < ApplicationController
             if @ticket.save
                 redirect_to '/home/?user_id='+@user.id.to_s, notice: "Add to inventory successfully."
             end
+        elsif(params[:commit]=='Remove')
+            Ticket.find_by(:inventory_id => @inventory.id).destroy
+            redirect_to '/inventory', alert: "Remove from inventory successfully."
         end
     end
 
     def inventory
         @user = User.find_by(:id => session[:user_id])
         @inventory = Inventory.find_by(:user_id => @user.id)
+        @ticket = Ticket.new
         @inventory_ticket = @inventory.get_inventory_item
         @inventory_price = @inventory.get_price
     end 
+
+    def check_out
+        @user = User.find_by(:id => session[:user_id])
+        @inventory = Inventory.find_by(:user_id => @user.id)
+        Ticket.where(:inventory_id => @inventory.id).delete_all
+    end
 
     private
         def user_params

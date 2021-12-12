@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   post 'register' ,to: "main#register_create"
   post 'ticket/:timetable_id', to: "main#ticket"
   get 'inventory' ,to: "main#inventory"
+  get 'check_out' ,to: "main#check_out"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
