@@ -20,7 +20,7 @@ class BookingsTest < ApplicationSystemTestCase
 
     #go to inventory page
     click_on "Inventory"
-    assert_text "Total amount 200 bahts."
+    assert_text "Total amount 100 bahts."
   end
 
   test "Remove ticket test" do 

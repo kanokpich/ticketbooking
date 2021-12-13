@@ -96,18 +96,18 @@ class MainController < ApplicationController
     def beverage
         @user = User.find_by(:id => session[:user_id])
         @inventory = Inventory.find_by(:user_id => @user.id)
-        @beverage = Beverage.find(params[:beverage_id])
-        if(params[:commit]=='Add to inventory')
+        @beverage = Beverage.find_by(:name => params[:beverage_id])
+        if(params[:commit]=='Add beverage')
             @product = Product.new
             @product.beverage_id = @beverage.id
             @product.inventory_id = @inventory.id
             
             if @product.save
-                redirect_to '/home/?user_id='+@user.id.to_s, notice: "Add to inventory successfully."
+                redirect_to '/home/?user_id='+@user.id.to_s, notice: "Add beverage to inventory successfully."
             end
-        elsif(params[:commit]=='Remove')
+        elsif(params[:commit]=='Remove beverage')
             Product.find_by(:inventory_id => @inventory.id).destroy
-            redirect_to '/inventory', alert: "Remove from inventory successfully."
+            redirect_to '/inventory', alert: "Remove beverage from inventory successfully."
         end
     end
 

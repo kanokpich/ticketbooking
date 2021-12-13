@@ -47,9 +47,9 @@
         %td= beverage.name
         %td= beverage.price
         %td
-          = simple_form_for(@product, method: :post, url: '/beverage/'+beverage.id.to_s) do |f|
+          = simple_form_for(@product, method: :post, url: '/beverage/'+beverage.name.to_s) do |f|
             .form-actions
-              = f.button :submit,'Add to inventory',class:'btn btn-success mt-3',action:'Add'
+              = f.button :submit,'Add beverage',class:'btn btn-success mt-3',action:'Add'
         %td 
           = simple_form_for(@user) do |f|
             .form-inputs

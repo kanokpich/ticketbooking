@@ -7,3 +7,7 @@ one:
 two:
   name: MyString
   price: 1
+
+test1: 
+  name: coke
+  price: 15

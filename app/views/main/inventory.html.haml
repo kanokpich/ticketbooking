@@ -27,8 +27,6 @@
             .form-actions
               -if(Ticket.find_by(:inventory_id => @inventory.id))
                 = f.button :submit,'Remove',class:'btn btn-danger mt-3',action:'Remove'
-              -else
-                = f.button :submit,'Add to inventory',class:'btn btn-success mt-3',action:'Add'
         %td 
           = simple_form_for(@user) do |f|
             .form-inputs
@@ -53,7 +51,7 @@
           = simple_form_for(@product, method: :post, url: '/beverage/'+product.id.to_s) do |f|
             .form-actions
               -if(Product.find_by(:inventory_id => @inventory.id))
-                = f.button :submit,'Remove',class:'btn btn-danger mt-3',action:'Remove'
+                = f.button :submit,'Remove beverage',class:'btn btn-danger mt-3',action:'Remove'
         %td 
           = simple_form_for(@user) do |f|
             .form-inputs
