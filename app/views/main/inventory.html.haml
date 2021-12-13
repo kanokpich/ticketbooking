@@ -36,6 +36,31 @@
     
 %br
 
+%h2 Beverages
+
+%table{:class=>'display',:id=>'beverages-index-table',:style=>'width:100%'}
+  %thead
+    %tr
+      %th Name
+      %th Price
+
+  %tbody
+    - @inventory_product.each.with_index() do |product,index|
+      %tr
+        %td= product.beverage.name
+        %td= product.beverage.price
+        %td
+          = simple_form_for(@product, method: :post, url: '/beverage/'+product.id.to_s) do |f|
+            .form-actions
+              -if(Product.find_by(:inventory_id => @inventory.id))
+                = f.button :submit,'Remove',class:'btn btn-danger mt-3',action:'Remove'
+        %td 
+          = simple_form_for(@user) do |f|
+            .form-inputs
+              = f.input :id,:as => :hidden
+
+%br
+
 %div
 = 'Total amount ' + @inventory_price.to_s + ' bahts.'
 

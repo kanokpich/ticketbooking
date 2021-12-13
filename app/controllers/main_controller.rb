@@ -11,7 +11,9 @@ class MainController < ApplicationController
 
     def home 
         @timetables = Timetable.all
+        @beverages = Beverage.all
         @ticket = Ticket.new
+        @product = Product.new
         @user = User.find_by(:id => session[:user_id])
         @inventory = Inventory.find_by(:user_id => @user.id)
     end 
@@ -91,18 +93,39 @@ class MainController < ApplicationController
         end
     end
 
+    def beverage
+        @user = User.find_by(:id => session[:user_id])
+        @inventory = Inventory.find_by(:user_id => @user.id)
+        @beverage = Beverage.find(params[:beverage_id])
+        if(params[:commit]=='Add to inventory')
+            @product = Product.new
+            @product.beverage_id = @beverage.id
+            @product.inventory_id = @inventory.id
+            
+            if @product.save
+                redirect_to '/home/?user_id='+@user.id.to_s, notice: "Add to inventory successfully."
+            end
+        elsif(params[:commit]=='Remove')
+            Product.find_by(:inventory_id => @inventory.id).destroy
+            redirect_to '/inventory', alert: "Remove from inventory successfully."
+        end
+    end
+
     def inventory
         @user = User.find_by(:id => session[:user_id])
         @inventory = Inventory.find_by(:user_id => @user.id)
         @ticket = Ticket.new
-        @inventory_ticket = @inventory.get_inventory_item
-        @inventory_price = @inventory.get_price
+        @product = Product.new
+        @inventory_ticket = @inventory.get_inventory_ticket
+        @inventory_product = @inventory.get_inventory_product
+        @inventory_price = @inventory.sum_price
     end 
 
     def check_out
         @user = User.find_by(:id => session[:user_id])
         @inventory = Inventory.find_by(:user_id => @user.id)
         Ticket.where(:inventory_id => @inventory.id).delete_all
+        Product.where(:inventory_id => @inventory.id).delete_all
     end
 
     private

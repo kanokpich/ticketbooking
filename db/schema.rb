@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_12_065551) do
+ActiveRecord::Schema.define(version: 2021_12_13_074136) do
+
+  create_table "beverages", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "chairs", force: :cascade do |t|
     t.string "name"
@@ -37,6 +44,15 @@ ActiveRecord::Schema.define(version: 2021_12_12_065551) do
     t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.integer "beverage_id", null: false
+    t.integer "inventory_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["beverage_id"], name: "index_products_on_beverage_id"
+    t.index ["inventory_id"], name: "index_products_on_inventory_id"
   end
 
   create_table "theaters", force: :cascade do |t|
@@ -78,6 +94,8 @@ ActiveRecord::Schema.define(version: 2021_12_12_065551) do
 
   add_foreign_key "chairs", "theaters"
   add_foreign_key "inventories", "users"
+  add_foreign_key "products", "beverages"
+  add_foreign_key "products", "inventories"
   add_foreign_key "tickets", "chairs"
   add_foreign_key "tickets", "inventories"
   add_foreign_key "tickets", "timetables"

@@ -33,9 +33,46 @@
 
 %br
 
+%h2 Beverages
+
+%table{:class=>'display',:id=>'beverages-index-table',:style=>'width:100%'}
+  %thead
+    %tr
+      %th Name
+      %th Price
+
+  %tbody
+    - @beverages.each do |beverage|
+      %tr
+        %td= beverage.name
+        %td= beverage.price
+        %td
+          = simple_form_for(@product, method: :post, url: '/beverage/'+beverage.id.to_s) do |f|
+            .form-actions
+              = f.button :submit,'Add to inventory',class:'btn btn-success mt-3',action:'Add'
+        %td 
+          = simple_form_for(@user) do |f|
+            .form-inputs
+              = f.input :id,:as => :hidden
+
+%br
+
+
 :javascript 
   $(document).ready(function() {
     $('#timetables-index-table').DataTable( {
+        columnDefs: [ {
+            targets: [ 0 ],
+            orderData: [ 0, 1 ]
+        }, {
+            targets: [ 1 ],
+            orderData: [ 1, 0 ]
+        } ]
+    } );
+  } );
+
+  $(document).ready(function() {
+    $('#beverages-index-table').DataTable( {
         columnDefs: [ {
             targets: [ 0 ],
             orderData: [ 0, 1 ]

@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Beverage:
+  = @product.beverage
+%p
+  %b Inventory:
+  = @product.inventory
+
+= link_to 'Edit', edit_product_path(@product)
+\|
+= link_to 'Back', products_path

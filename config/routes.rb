@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :products
+  resources :beverages
   resources :tickets
   resources :chairs
   resources :inventories
@@ -15,6 +17,7 @@ Rails.application.routes.draw do
   get 'register' ,to: "main#register"
   post 'register' ,to: "main#register_create"
   post 'ticket/:timetable_id', to: "main#ticket"
+  post 'beverage/:beverage_id', to: "main#beverage"
   get 'inventory' ,to: "main#inventory"
   get 'check_out' ,to: "main#check_out"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
